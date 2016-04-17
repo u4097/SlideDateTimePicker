@@ -40,7 +40,7 @@ public class SampleActivity extends FragmentActivity
         public void onDateTimeCancel()
         {
             Toast.makeText(SampleActivity.this,
-                    "Canceled", Toast.LENGTH_SHORT).show();
+                    "Cancelled", Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -65,6 +65,9 @@ public class SampleActivity extends FragmentActivity
                     //.setMaxDate(maxDate)
                     //.setIs24HourTime(true)
                     //.setTheme(SlideDateTimePicker.HOLO_DARK)
+                    //.setTitle("Enter date and time")
+                    //.setOkButtonText("Select")
+                    //.setCancelButtonText("Back")
                     //.setIndicatorColor(Color.parseColor("#990000"))
                     .build()
                     .show();

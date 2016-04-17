@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 /**
  * <p>The {@code DialogFragment} that contains the {@link SlidingTabLayout}
@@ -49,6 +50,9 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
     private Button mCancelButton;
     private Date mInitialDate;
     private int mTheme;
+    private String mTitle;
+    private String mOkButtonText;
+    private String mCancelButtonText;
     private int mIndicatorColor;
     private Date mMinDate;
     private Date mMaxDate;
@@ -83,7 +87,8 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
      */
     public static SlideDateTimeDialogFragment newInstance(SlideDateTimeListener listener,
             Date initialDate, Date minDate, Date maxDate, boolean isClientSpecified24HourTime,
-            boolean is24HourTime, int theme, int indicatorColor)
+            boolean is24HourTime, int theme, String title, String okButtonText,
+            String cancelButtonText, int indicatorColor)
     {
         mListener = listener;
 
@@ -98,6 +103,9 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
         bundle.putBoolean("isClientSpecified24HourTime", isClientSpecified24HourTime);
         bundle.putBoolean("is24HourTime", is24HourTime);
         bundle.putInt("theme", theme);
+        bundle.putString("title", title);
+        bundle.putString("okButtonText", okButtonText);
+        bundle.putString("cancelButtonText", cancelButtonText);
         bundle.putInt("indicatorColor", indicatorColor);
         dialogFragment.setArguments(bundle);
 
@@ -176,17 +184,34 @@ public class SlideDateTimeDialogFragment extends DialogFragment implements DateF
         mIsClientSpecified24HourTime = args.getBoolean("isClientSpecified24HourTime");
         mIs24HourTime = args.getBoolean("is24HourTime");
         mTheme = args.getInt("theme");
+        mTitle = args.getString("title");
+        mOkButtonText = args.getString("okButtonText");
+        mCancelButtonText = args.getString("cancelButtonText");
         mIndicatorColor = args.getInt("indicatorColor");
     }
 
     private void setupViews(View v)
     {
+        TextView mTitleView = (TextView) v.findViewById(R.id.title);
+        if (mTitle != null) {
+            mTitleView.setText(mTitle);
+            mTitleView.setVisibility(TextView.VISIBLE);
+        } else {
+            mTitleView.setVisibility(TextView.GONE);
+        }
+
         mViewPager = (CustomViewPager) v.findViewById(R.id.viewPager);
         mSlidingTabLayout = (SlidingTabLayout) v.findViewById(R.id.slidingTabLayout);
         mButtonHorizontalDivider = v.findViewById(R.id.buttonHorizontalDivider);
         mButtonVerticalDivider = v.findViewById(R.id.buttonVerticalDivider);
         mOkButton = (Button) v.findViewById(R.id.okButton);
+        if (mOkButtonText != null) {
+            mOkButton.setText(mOkButtonText);
+        }
         mCancelButton = (Button) v.findViewById(R.id.cancelButton);
+        if (mCancelButtonText != null) {
+            mCancelButton.setText(mCancelButtonText);
+        }
     }
 
     private void customizeViews()

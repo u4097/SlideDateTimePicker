@@ -88,6 +88,21 @@ or
 .setTheme(SlideDateTimePicker.HOLO_DARK)
 ```
 
+**To set a title for the dialog:**
+```java
+.setTitle("Custom title")
+```
+
+**To set a custom text for the OK button:**
+```java
+.setOkButtonText("Schedule")
+```
+
+**To set a custom text for the Cancel button:**
+```java
+.setCancelButtonText("Drop")
+```
+
 **To specify the color for the sliding tab underline (indicator):**
 ```java
 .setIndicatorColor(Color.parseColor("#FF0000"))
@@ -106,6 +121,11 @@ Contributions are welcome. Please open up an issue in GitHub or submit a PR.
 
 Changelog
 =========
+
+### v1.0.5
+
+* Added ability to set custom dialog title and label text for OK and Cancel buttons (by [Tomas Vitek](https://github.com/tomasvitek))
+
 ### v1.0.4
 
 * Fixed issue where the DatePicker would shift to the left when scrolled vertically (thanks to [alexrainman](https://github.com/alexrainman))

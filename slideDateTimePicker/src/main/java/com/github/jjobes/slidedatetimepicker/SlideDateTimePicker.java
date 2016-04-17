@@ -29,6 +29,9 @@ public class SlideDateTimePicker
     private boolean mIsClientSpecified24HourTime;
     private boolean mIs24HourTime;
     private int mTheme;
+    private String mTitle;
+    private String mOkButtonText;
+    private String mCancelButtonText;
     private int mIndicatorColor;
 
     /**
@@ -144,6 +147,42 @@ public class SlideDateTimePicker
     }
 
     /**
+     * <p>Sets the title of the dialog.</p>
+     *
+     * <p>This must be called before {@link #show()}.</p>
+     *
+     * @param title     the title for the DateTimePicker
+     */
+    public void setTitle(String title)
+    {
+        mTitle = title;
+    }
+
+    /**
+     * <p>Sets the text of the OK button label.</p>
+     *
+     * <p>This must be called before {@link #show()}.</p>
+     *
+     * @param text  the label text for the OK button
+     */
+    public void setOkButtonText(String text)
+    {
+        mOkButtonText = text;
+    }
+
+    /**
+     * <p>Sets the text of the Cancel button label.</p>
+     *
+     * <p>This must be called before {@link #show()}.</p>
+     *
+     * @param text  the label text for the OK button
+     */
+    public void setCancelButtonText(String text)
+    {
+        mCancelButtonText = text;
+    }
+
+    /**
      * Sets the color of the underline for the currently selected tab.
      *
      * @param indicatorColor  the color of the selected tab's underline
@@ -179,6 +218,9 @@ public class SlideDateTimePicker
                         mIsClientSpecified24HourTime,
                         mIs24HourTime,
                         mTheme,
+                        mTitle,
+                        mOkButtonText,
+                        mCancelButtonText,
                         mIndicatorColor);
 
         dialogFragment.show(mFragmentManager,
@@ -202,6 +244,9 @@ public class SlideDateTimePicker
         private boolean isClientSpecified24HourTime;
         private boolean is24HourTime;
         private int theme;
+        private String title;
+        private String okButtonText;
+        private String cancelButtonText;
         private int indicatorColor;
 
         public Builder(FragmentManager fm)
@@ -246,6 +291,15 @@ public class SlideDateTimePicker
         }
 
         /**
+         * @see SlideDateTimePicker#setOkButtonText(String)
+         */
+        public Builder setMaxDate(String text)
+        {
+            this.maxDate = maxDate;
+            return this;
+        }
+
+        /**
          * @see SlideDateTimePicker#setIs24HourTime(boolean)
          */
         public Builder setIs24HourTime(boolean is24HourTime)
@@ -261,6 +315,33 @@ public class SlideDateTimePicker
         public Builder setTheme(int theme)
         {
             this.theme = theme;
+            return this;
+        }
+
+        /**
+         * @see SlideDateTimePicker#setTitle(String)
+         */
+        public Builder setTitle(String title)
+        {
+            this.title = title;
+            return this;
+        }
+
+        /**
+         * @see SlideDateTimePicker#setOkButtonText(String)
+         */
+        public Builder setOkButtonText(String text)
+        {
+            this.okButtonText = text;
+            return this;
+        }
+
+        /**
+         * @see SlideDateTimePicker#setCancelButtonText(String)
+         */
+        public Builder setCancelButtonText(String text)
+        {
+            this.cancelButtonText = text;
             return this;
         }
 
@@ -291,6 +372,9 @@ public class SlideDateTimePicker
             picker.setIsClientSpecified24HourTime(isClientSpecified24HourTime);
             picker.setIs24HourTime(is24HourTime);
             picker.setTheme(theme);
+            picker.setTitle(title);
+            picker.setOkButtonText(okButtonText);
+            picker.setCancelButtonText(cancelButtonText);
             picker.setIndicatorColor(indicatorColor);
 
             return picker;
